@@ -1,11 +1,11 @@
-import person from "../../assets/images/about_us/person.jpg"
-import parts from "../../assets/images/about_us/parts.jpg"
+import person from "../../../assets/images/about_us/person.jpg"
+import parts from "../../../assets/images/about_us/parts.jpg"
 
 const About = () => {
     return (
         <div className="hero min-h-screen bg-base-200 p-4">
             <div className="hero-content flex-col lg:flex-row">
-                <div className="lg:w-1/2 relative">
+                <div className=" lg:w-1/2 relative">
                     <img src={person} className="w-3/4 rounded-lg shadow-2xl" />
                     <img src={parts} className="w-1/3 rounded-lg shadow-2xl absolute right-10 top-1/2 border-8 border-white" />
                 </div>
