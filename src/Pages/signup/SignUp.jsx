@@ -3,7 +3,7 @@ import { FaFacebookF, FaGithub, FaLinkedin } from "react-icons/fa";
 import login from "../../assets/images/login/login.svg"
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const SignUp = () => {
     return (
         <div className="hero min-h-screen bg-sky-100">
             <div className="hero-content flex-col lg:flex-row gap-14">
@@ -12,9 +12,15 @@ const Login = () => {
                 </div>
                 <div className="card w-full lg:w-1/2 shadow-2xl bg-base-100">
                     <div className="card-body">
-                        <h1 className="text-3xl font-bold text-center">Login</h1>
+                        <h1 className="text-3xl font-bold text-center">Sign Up</h1>
 
                         <form>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Name</span>
+                                </label>
+                                <input type="text" name="name" placeholder="name" className="input input-bordered" required />
+                            </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
@@ -27,8 +33,9 @@ const Login = () => {
                                 </label>
                                 <input type="password" name="password" placeholder="password" className="input input-bordered" required/>
                             </div>
+                        
                             <div className="form-control mt-6">
-                                <input className="btn bg-orange-600 border-none" type="submit" value="Sign In" />
+                                <input className="btn bg-orange-600 border-none" type="submit" value="Sign UP" />
                             </div>
                         </form>
 
@@ -40,7 +47,7 @@ const Login = () => {
                             <span className="p-4 btn-ghost rounded-full text-sky-600 text-lg"><FaLinkedin></FaLinkedin></span>
                         </div>
 
-                        <p className="text-md font-bold text-center">New Here ? <Link className="text-orange-500" to="/signup">Sign Up</Link></p>
+                        <p className="text-md font-bold text-center">Already Have Account ? <Link className="text-orange-500" to="/login">Log IN</Link></p>
 
                     </div>
                 </div>
@@ -49,4 +56,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default SignUp;
