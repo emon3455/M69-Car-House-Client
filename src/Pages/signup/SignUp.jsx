@@ -2,8 +2,47 @@
 import { FaFacebookF, FaGithub, FaLinkedin } from "react-icons/fa";
 import login from "../../assets/images/login/login.svg"
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProviders";
+import { updateProfile } from "firebase/auth";
 
 const SignUp = () => {
+
+    const {createUser} = useContext(AuthContext);
+
+    const  handleSubmitSignUp =(e)=>{
+        
+        e.preventDefault();
+
+        const form = e.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        createUser(email,password)
+        .then(res=> {
+
+            const createdUser= res.user;
+            
+            // updating user info
+            updateProfile(createdUser, {
+                displayName: name,
+              }).then(() => {
+                alert("user Created Successfully");
+                form.rest();
+              }).catch((err) => {
+                alert(err.message);
+                return;
+              });
+
+        })
+        .catch(er=> {
+            alert(er.message);
+            return;
+        })
+
+    }
+
     return (
         <div className="hero min-h-screen bg-sky-100">
             <div className="hero-content flex-col lg:flex-row gap-14">
@@ -14,7 +53,7 @@ const SignUp = () => {
                     <div className="card-body">
                         <h1 className="text-3xl font-bold text-center">Sign Up</h1>
 
-                        <form>
+                        <form onSubmit={handleSubmitSignUp}>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Name</span>

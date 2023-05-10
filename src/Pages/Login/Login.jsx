@@ -2,8 +2,38 @@
 import { FaFacebookF, FaGithub, FaLinkedin } from "react-icons/fa";
 import login from "../../assets/images/login/login.svg"
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProviders";
 
 const Login = () => {
+
+    const {loginUser} = useContext(AuthContext);
+
+    const  handleSubmitLogin =(e)=>{
+
+        e.preventDefault();
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        console.log(email,password);
+
+        loginUser(email,password)
+        .then(res=> {
+            const logedUser= res.user;
+            if(logedUser){
+                alert("user craeted successfully");
+                form.reset();
+            }
+        })
+        .catch(er=> {
+            alert(er.message);
+            return;
+        })
+
+
+    }
+
     return (
         <div className="hero min-h-screen bg-sky-100">
             <div className="hero-content flex-col lg:flex-row gap-14">
@@ -14,7 +44,7 @@ const Login = () => {
                     <div className="card-body">
                         <h1 className="text-3xl font-bold text-center">Login</h1>
 
-                        <form>
+                        <form onSubmit={handleSubmitLogin}>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
