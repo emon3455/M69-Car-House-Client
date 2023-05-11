@@ -22,7 +22,7 @@ const Login = () => {
         .then(res=> {
             const logedUser= res.user;
             if(logedUser){
-                alert("user craeted successfully");
+                alert("user Login successfully");
                 form.reset();
             }
         })
