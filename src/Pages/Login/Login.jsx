@@ -24,12 +24,30 @@ const Login = () => {
 
         loginUser(email,password)
         .then(res=> {
-            const logedUser= res.user;
-            if(logedUser){
+            const userd= res.user;
+            if(userd){
                 alert("user Login successfully");
                 form.reset();
-                navigate(from , {replace: true})
             }
+            const logedUser = {
+                email: userd.email
+            }
+            fetch('http://localhost:5000/jwt',{
+                method: "POST",
+                headers:{
+                    'content-type': "application/json"
+                },
+                body: JSON.stringify(logedUser)
+            })
+            .then(res=> res.json())
+            .then(data=> {
+                console.log("jwt-",data);
+                // warning: not the best way to store
+                localStorage.setItem('car-access-token', data.token);
+                navigate(from , {replace: true})
+
+            })
+            .catch(er=> console.log(er.message))
         })
         .catch(er=> {
             alert(er.message);
