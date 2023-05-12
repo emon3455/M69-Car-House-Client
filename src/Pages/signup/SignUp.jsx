@@ -29,7 +29,7 @@ const SignUp = () => {
                 displayName: name,
               }).then(() => {
                 alert("user Created Successfully");
-                form.rest();
+                form.reset();
               }).catch((err) => {
                 alert(err.message);
                 return;
