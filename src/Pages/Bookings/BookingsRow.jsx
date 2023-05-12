@@ -1,8 +1,8 @@
-import { FaCheck } from "react-icons/fa";
 
-const BookingsRow = ({ booking,hundleDelete }) => {
 
-    const { _id, price, service, service_img, date } = booking;
+const BookingsRow = ({ booking, hundleDelete, handleConfimBookings }) => {
+
+    const { _id, price, service, service_img, date, status } = booking;
 
     return (
         <tr>
@@ -31,9 +31,17 @@ const BookingsRow = ({ booking,hundleDelete }) => {
                 {price}
             </td>
             <th>
-                <button className="btn-ghost p-3 rounded-full btn-outline">
-                    <FaCheck></FaCheck>
-                </button>
+                {
+                    status 
+                    ?
+                        <button className="btn btn-success">
+                            Confirmed
+                        </button>
+                    :   <button onClick={() => handleConfimBookings(_id)} className="btn btn-ghost p-3 btn-outline">
+                            Please Confirm
+                        </button>
+                }
+
             </th>
         </tr>
     );
