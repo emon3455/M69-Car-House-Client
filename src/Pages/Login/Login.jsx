@@ -1,13 +1,17 @@
 /* eslint-disable no-unused-vars */
 import { FaFacebookF, FaGithub, FaLinkedin } from "react-icons/fa";
 import login from "../../assets/images/login/login.svg"
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
 
 const Login = () => {
 
     const {loginUser} = useContext(AuthContext);
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
     const  handleSubmitLogin =(e)=>{
 
@@ -24,6 +28,7 @@ const Login = () => {
             if(logedUser){
                 alert("user Login successfully");
                 form.reset();
+                navigate(from , {replace: true})
             }
         })
         .catch(er=> {
