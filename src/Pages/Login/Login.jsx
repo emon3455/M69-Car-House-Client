@@ -41,7 +41,6 @@ const Login = () => {
             })
             .then(res=> res.json())
             .then(data=> {
-                console.log("jwt-",data);
                 // warning: not the best way to store
                 localStorage.setItem('car-access-token', data.token);
                 navigate(from , {replace: true})
