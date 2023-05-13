@@ -11,7 +11,7 @@ const Bookings = () => {
     const [bookings, setBookings] = useState([]);
     const navigate = useNavigate();
 
-    const url = `http://localhost:5000/bookings?email=${user.email}`;
+    const url = `https://car-house-server-six.vercel.app/bookings?email=${user.email}`;
 
     useEffect(() => {
 
@@ -44,7 +44,7 @@ const Bookings = () => {
     const hundleDelete = (id) => {
         const procced = confirm("Are you sure !! you want to delete?");
         if (procced) {
-            fetch(`http://localhost:5000/bookings/${id}`, {
+            fetch(`https://car-house-server-six.vercel.app/bookings/${id}`, {
                 method: "DELETE"
             })
                 .then(res => res.json())
@@ -62,7 +62,7 @@ const Bookings = () => {
     const handleConfimBookings = (id)=>{
         const procced = confirm("Are you sure, you want to Confirm ?");
         if(procced){
-            fetch(`http://localhost:5000/bookings/${id}`,{
+            fetch(`https://car-house-server-six.vercel.app/bookings/${id}`,{
                 method: "PATCH",
                 headers:{
                     "content-type":"application/json"
