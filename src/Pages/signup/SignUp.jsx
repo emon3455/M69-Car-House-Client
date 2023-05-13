@@ -1,14 +1,15 @@
 /* eslint-disable no-unused-vars */
-import { FaFacebookF, FaGithub, FaLinkedin } from "react-icons/fa";
 import login from "../../assets/images/login/login.svg"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
 import { updateProfile } from "firebase/auth";
+import Social from "../Shared/Social";
 
 const SignUp = () => {
 
     const {createUser} = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const  handleSubmitSignUp =(e)=>{
         
@@ -30,6 +31,7 @@ const SignUp = () => {
               }).then(() => {
                 alert("user Created Successfully");
                 form.reset();
+                navigate("/");
               }).catch((err) => {
                 alert(err.message);
                 return;
@@ -80,11 +82,7 @@ const SignUp = () => {
 
                         <p className="text-center text-orange-600 font-bold mt-2">Or Log in With</p>
 
-                        <div className="flex justify-evenly">
-                            <span className="p-4 btn-ghost rounded-full text-sky-600 text-lg"><FaFacebookF></FaFacebookF></span>
-                            <span className="p-4 btn-ghost rounded-full text-lg"><FaGithub></FaGithub></span>              
-                            <span className="p-4 btn-ghost rounded-full text-sky-600 text-lg"><FaLinkedin></FaLinkedin></span>
-                        </div>
+                        <Social></Social>
 
                         <p className="text-md font-bold text-center">Already Have Account ? <Link className="text-orange-500" to="/login">Log IN</Link></p>
 

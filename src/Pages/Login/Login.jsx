@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
-import { FaFacebookF, FaGithub, FaLinkedin } from "react-icons/fa";
 import login from "../../assets/images/login/login.svg"
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
+import Social from "../Shared/Social";
 
 const Login = () => {
 
@@ -29,24 +29,10 @@ const Login = () => {
                 alert("user Login successfully");
                 form.reset();
             }
-            const logedUser = {
-                email: userd.email
-            }
-            fetch('http://localhost:5000/jwt',{
-                method: "POST",
-                headers:{
-                    'content-type': "application/json"
-                },
-                body: JSON.stringify(logedUser)
-            })
-            .then(res=> res.json())
-            .then(data=> {
-                // warning: not the best way to store
-                localStorage.setItem('car-access-token', data.token);
-                navigate(from , {replace: true})
+            
+            navigate(from , {replace: true});
 
-            })
-            .catch(er=> console.log(er.message))
+            
         })
         .catch(er=> {
             alert(er.message);
@@ -86,11 +72,7 @@ const Login = () => {
 
                         <p className="text-center text-orange-600 font-bold mt-2">Or Log in With</p>
 
-                        <div className="flex justify-evenly">
-                            <span className="p-4 btn-ghost rounded-full text-sky-600 text-lg"><FaFacebookF></FaFacebookF></span>
-                            <span className="p-4 btn-ghost rounded-full text-lg"><FaGithub></FaGithub></span>              
-                            <span className="p-4 btn-ghost rounded-full text-sky-600 text-lg"><FaLinkedin></FaLinkedin></span>
-                        </div>
+                        <Social></Social>
 
                         <p className="text-md font-bold text-center">New Here ? <Link className="text-orange-500" to="/signup">Sign Up</Link></p>
 
