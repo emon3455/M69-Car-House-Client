@@ -1,11 +1,16 @@
+/* eslint-disable no-unused-vars */
 import { useContext } from "react";
 import { FaFacebookF, FaGithub, FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../providers/AuthProviders";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 const Social = () => {
 
     const { loginWithGoogle } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
     const handleGoogleLogin = () =>{
         loginWithGoogle()
@@ -13,7 +18,9 @@ const Social = () => {
             const user = res.send();
             if(user){
                 alert("user created successfully");
+               
             }
+            navigate(from , {replace: true});
         })
         .catch(er=>{
             console.log(er.message);

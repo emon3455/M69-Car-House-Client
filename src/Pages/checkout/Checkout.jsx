@@ -27,7 +27,7 @@ const Checkout = () => {
             service_id: _id,
         }
 
-        fetch('https://car-house-server-six.vercel.app/bookings',{
+        fetch('http://localhost:5000/bookings',{
             method: "POST",
             headers:{
                 "Content-Type":"application/json",

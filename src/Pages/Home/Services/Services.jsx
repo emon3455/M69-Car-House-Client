@@ -4,14 +4,15 @@ import Service from "./Service";
 const Services = () => {
 
     const [services, setServices] = useState([]);
+    const [asc, setAsc] = useState(true);
 
     useEffect(()=>{
 
-        fetch("https://car-house-server-six.vercel.app/services")
+        fetch(`http://localhost:5000/services?sort=${asc ? "asc" : "dec"}`)
         .then(res=> res.json())
         .then(data=> setServices(data))
 
-    }, []);
+    }, [asc]);
 
     return (
         <div className="my-8">
@@ -25,6 +26,10 @@ const Services = () => {
                 the majority have suffered alteration in some form, by injected humour, or randomised <br /> words which do not look even slightly believable. 
                 </p>
             </div>
+
+            <button className="btn btn-primary my-4" onClick={()=> setAsc(!asc)}>
+                {asc ? "Sort In Descending Order" : "Sort In Ascending Order"}
+            </button>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
 

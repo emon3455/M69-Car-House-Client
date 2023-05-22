@@ -44,7 +44,7 @@ const AuthProviders = ({ children }) => {
             }
             if (currentUser && currentUser.email) {
 
-                fetch('https://car-house-server-six.vercel.app/jwt', {
+                fetch('http://localhost:5000/jwt', {
                     method: "POST",
                     headers: {
                         'content-type': "application/json"
